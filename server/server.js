@@ -109,18 +109,18 @@ passport.use(new FacebookStrategy({
 ));
 
 // configure Express
-  // app.set('views', __dirname + '/views');
-  // app.set('view engine', 'ejs');
-  // app.use(logger());
-  app.use(cookieParser());
-  app.use(bodyParser());
-  // app.use(methodOverride());
-  app.use(session({ secret: 'keyboard cat' }));
-  // Initialize Passport!  Also use passport.session() middleware, to support
-  // persistent login sessions (recommended).
-  app.use(passport.initialize());
-  app.use(passport.session());
-  // app.use(express.static(__dirname + '/public'));
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'ejs');
+// app.use(logger());
+app.use(cookieParser());
+app.use(bodyParser());
+// app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat' }));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(express.static(__dirname + '/public'));
 
 // GET /auth/facebook
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -129,7 +129,7 @@ passport.use(new FacebookStrategy({
 //   redirect the user back to this application at /auth/facebook/callback
 app.get('/auth/facebook',
   passport.authenticate('facebook'),
-  function(req, res){
+  function(req, res) {
     // The request will be redirected to Facebook for authentication, so this
     // function will not be called.
   });
@@ -139,18 +139,19 @@ app.get('/auth/facebook',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/facebook/callback', 
+app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/#/edit');
   });
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
 app.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : '0');
 });
+
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),
@@ -186,7 +187,7 @@ function ensureAuthenticated(req, res, next) {
 //   }
 // ));
 
-// app.post('/login', 
+// app.post('/login',
 //   passport.authenticate('local', { failureRedirect: '/login' }),
 //   function(req, res) {
 //     //res.redirect('/');
@@ -199,7 +200,7 @@ function ensureAuthenticated(req, res, next) {
 
 // function isLoggedIn(req, res, next) {
 
-//     // if user is authenticated in the session, carry on 
+//     // if user is authenticated in the session, carry on
 //     if (req.isAuthenticated())
 //         return next();
 
@@ -263,6 +264,25 @@ app.post('/artist', jsonParser, function(req, res) {
   //   pic: 'http://thecatapi.com/api/images/get',
   // };
   // res.status(200).json(testObj);
+});
+
+app.post('/profile', jsonParser, function(req, res) {
+  var artistId = req.body.artistId;
+
+  db.artist.findById(artistId)
+    .then(function(artist) {
+      if (artist === null) {
+        res.status(404).end('ArtistID ' + artistId + ' not found.');
+      }
+
+      res.status(200).json({
+        id: artist.id,
+        name: artist.name,
+        pic: artist.imageUrl,
+        email: artist.email,
+        artistUrl: artist.artistUrl,
+      });
+    });
 });
 
 // Get list of specified number of nearby artists
