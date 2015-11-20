@@ -1,0 +1,35 @@
+{
+  "name": "starvingArtists",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/LeKeve/starvingartists",
+  "authors": [
+    "Kevin Lee <kevinyjlee23@gmail.com>"
+  ],
+  "description": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "braintree-web": "~2.14.3",
+    "angular-route": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "angular-material": "~0.11.4",
+    "angularjs-geolocation": "~0.1.1",
+    "angular-typeahead": "~0.2.4",
+    "angular": "~1.4.7",
+    "angular-mocks": "~1.4.7",
+    "angular-strap": "~2.3.3",
+    "bootstrap": "~3.3.5",
+    "cloudinary": "cloudinary_js#~1.0.25",
+    "ng-file-upload": "~9.1.1",
+    "ng-file-upload-shim": "~9.1.1",
+    "cloudinary_ng": "~0.1.4"
+  }
+}

@@ -1,0 +1,61 @@
+/*body {
+  background-color: #424242;
+}
+h1 {
+  color: #ffffff;
+  
+}
+md-icon {
+  background-color: #ffffff;
+}
+*/
+
+.error { 
+  background: red; 
+  color: white; 
+}
+.success { 
+  background: green; 
+  color: white; 
+}
+/* style the dropdown items */
+.dropdown-menu .active > a {
+  font-size: 110%;
+  background-color: #3F51B5;
+}
+
+.typeahead:focus {
+  border: 2px solid #3F51B5;
+}
+
+.textColor {
+  color:white !important;
+}
+
+.hiddenSubmit {
+  visibility: hidden; 
+  position: absolute;
+}
+
+.buttonMove {
+  position: relative;
+  right: 60px;
+}
+
+md-sidenav {
+  width: 225px;
+  min-width: 225px;
+  max-width: 225px;
+}
+
+md-sidenav.md-locked-open {
+  width: 225px;
+  min-width: 225px;
+  max-width: 225px;
+}
+
+.md-default-theme {
+  color: #E8EAF6;
+  background-color: #E8EAF6;
+}
+
